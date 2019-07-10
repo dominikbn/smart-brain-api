@@ -1,7 +1,7 @@
 const Clarifai = require('clarifai');
 
 const clarifaiApp = new Clarifai.App({
-  apiKey: 'ca1c72aa19f8471da18fbda80cd8fafc'
+  apiKey: process.env.CLARIFAI_API_KEY
 });
 
 // start face detection with the specified image URL
