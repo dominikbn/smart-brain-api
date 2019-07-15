@@ -9,6 +9,9 @@ const signin = require('./controllers/signin');
 const profile = require('./controllers/profile');
 const image = require('./controllers/image');
 
+// Constants
+const PORT = process.env.PORT || 3000;
+
 // database connection
 const db = knex({
   client: 'pg',
@@ -37,10 +40,9 @@ app.get('/profile/:id', (req, res) => {
 app.put('/image', (req, res) => {
   image.handleImage(req, res, db);
 });
-app.post('/imageurl', (req, res) => {
-  image.handleImageUrl(req, res);
-});
+app.post('/image-face', image.handleImageFace());
+app.post('/image-celebrity', image.handleImageCelebrity());
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`app is running on port ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}.`);
 });
